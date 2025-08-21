@@ -1,5 +1,7 @@
+import 'package:chatapp/auth/auth_services.dart';
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -11,7 +13,52 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  void register() {}
+  // create user function
+  void register() async {
+    // check if the passwords are correct
+    if (_passwordController.text != _confirmPasswordController.text) {
+      Get.snackbar(
+        "Erreur",
+        "Les mots de passe ne correspondent pas",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    // show loader when creating user
+    showDialog(
+      context: Get.context!,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+
+    // instance of auth services to create user
+    final authServices = AuthServices();
+
+    // try creating the user
+    try {
+      await authServices.createUserWithEmailPassword(
+        _emailController.text,
+        _passwordController.text,
+      );
+
+      // fermeture du loader (car la creation est deja terminee)
+      if (Get.isDialogOpen!) Get.back();
+
+      // catch any errors
+    } on FirebaseAuthException catch (e) {
+      // fermeture du loader (car il y a eu une erreur)
+      if (Get.isDialogOpen!) Get.back();
+      Get.snackbar(
+        "Erreur lors de la creation de l'utilisateur",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

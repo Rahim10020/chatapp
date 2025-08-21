@@ -1,7 +1,7 @@
+import 'package:chatapp/auth/auth_services.dart';
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 
 class LoginPage extends StatelessWidget {
@@ -10,7 +10,39 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void login() {}
+  // login method
+  void login() async {
+    // afficher un loader lors du loadage
+    showDialog(
+      context: Get.context!,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+
+    // instance of auth service
+    final authService = AuthServices();
+    // try login
+    try {
+      await authService.signInWithEmailPassword(
+        _emailController.text,
+        _passwordController.text,
+      );
+
+      // fermeture du loader
+      if (Get.isDialogOpen!) Get.back();
+    }
+    // catch any errors
+    catch (e) {
+      // fermeture du loader
+      if (Get.isDialogOpen!) Get.back();
+      Get.snackbar(
+        "Erreur de connexion",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
