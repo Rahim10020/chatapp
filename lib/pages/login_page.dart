@@ -1,6 +1,8 @@
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -59,7 +61,7 @@ class LoginPage extends StatelessWidget {
                 Text("Don't have an account? "),
                 const SizedBox(width: 8),
                 GestureDetector(
-                  onTap: () => {},
+                  onTap: () => Get.offNamed('/register'),
                   child: Text(
                     "Register now",
                     style: TextStyle(
