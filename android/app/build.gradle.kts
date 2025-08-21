@@ -11,7 +11,7 @@ plugins {
 android {
     namespace = "com.example.chatapp"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"  // Version NDK spécifique requise par Firebase
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -27,7 +27,7 @@ android {
         applicationId = "com.example.chatapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 23  // Changé pour Firebase (au lieu de flutter.minSdkVersion)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
