@@ -1,4 +1,4 @@
-import 'package:chatapp/auth/auth_gate.dart';
+import 'package:chatapp/services/auth/auth_gate.dart';
 import 'package:chatapp/firebase_options.dart';
 import 'package:chatapp/pages/home_page.dart';
 import 'package:chatapp/pages/login_page.dart';
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register', page: () => RegisterPage()),
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/settings', page: () => SettingsPage()),
+        // GetPage(name: '/chat-page', page: () => ChatPage()),
       ],
       theme: lightMode,
     );

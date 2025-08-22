@@ -1,4 +1,4 @@
-import 'package:chatapp/auth/auth_services.dart';
+import 'package:chatapp/services/auth/auth_service.dart';
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
     );
 
     // instance of auth service
-    final authService = AuthServices();
+    final authService = AuthService();
     // try login
     try {
       await authService.signInWithEmailPassword(

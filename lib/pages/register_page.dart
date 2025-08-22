@@ -1,4 +1,4 @@
-import 'package:chatapp/auth/auth_services.dart';
+import 'package:chatapp/services/auth/auth_service.dart';
 import 'package:chatapp/components/my_button.dart';
 import 'package:chatapp/components/my_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,7 +34,7 @@ class RegisterPage extends StatelessWidget {
     );
 
     // instance of auth services to create user
-    final authServices = AuthServices();
+    final authServices = AuthService();
 
     // try creating the user
     try {

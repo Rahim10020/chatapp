@@ -1,4 +1,4 @@
-import 'package:chatapp/auth/auth_services.dart';
+import 'package:chatapp/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -9,7 +9,7 @@ class MyDrawer extends StatelessWidget {
     // fermer le drawer
     Get.back();
     // aller au settings
-    Get.offAllNamed('/settings');
+    Get.toNamed('/settings');
   }
 
   void gotoHome() {
@@ -29,7 +29,9 @@ class MyDrawer extends StatelessWidget {
           TextButton(onPressed: () => Get.back(), child: const Text("Annuler")),
           TextButton(
             onPressed: () {
-              final authService = AuthServices();
+              // close the dialog box
+              Get.back();
+              final authService = AuthService();
               authService.signOut();
             },
             child: const Text("Deconnexion"),
