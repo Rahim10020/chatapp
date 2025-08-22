@@ -52,7 +52,12 @@ class HomePage extends StatelessWidget {
       return UserTile(
         text: userData['email'],
         onTap: () {
-          Get.to(() => ChatPage(receiverEmail: userData['email']));
+          Get.to(
+            () => ChatPage(
+              receiverEmail: userData['email'],
+              receiverId: userData['uid'],
+            ),
+          );
         },
       );
     } else {
