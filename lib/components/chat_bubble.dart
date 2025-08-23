@@ -14,7 +14,9 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: isCurrentUser ? Colors.green : Colors.grey.shade500,
+        color: isCurrentUser
+            ? Colors.green
+            : Theme.of(context).colorScheme.secondary,
         borderRadius: isCurrentUser
             ? BorderRadius.only(
                 topLeft: Radius.circular(12),
@@ -27,7 +29,14 @@ class ChatBubble extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 25),
-      child: Text(message, style: TextStyle(color: Colors.white)),
+      child: Text(
+        message,
+        style: TextStyle(
+          color: isCurrentUser
+              ? Colors.white
+              : Theme.of(context).colorScheme.inversePrimary,
+        ),
+      ),
     );
   }
 }

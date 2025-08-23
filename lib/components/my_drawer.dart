@@ -61,8 +61,16 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: ListTile(
-              title: Text("H O M E"),
-              leading: Icon(Icons.home),
+              title: Text(
+                "Home",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+              ),
+              leading: Icon(
+                Icons.home,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
               onTap: gotoHome,
             ),
           ),
@@ -70,8 +78,16 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: ListTile(
-              title: Text("S E T T I N G S"),
-              leading: Icon(Icons.settings),
+              title: Text(
+                "Settings",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+              ),
+              leading: Icon(
+                Icons.settings,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
               onTap: gotoSettings,
             ),
           ),
@@ -79,8 +95,16 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: ListTile(
-              title: Text("L O G O U T"),
-              leading: Icon(Icons.logout),
+              title: Text(
+                "Logout",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+              ),
+              leading: Icon(
+                Icons.logout,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
               onTap: logout,
             ),
           ),
