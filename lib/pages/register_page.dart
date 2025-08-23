@@ -89,6 +89,7 @@ class RegisterPage extends StatelessWidget {
               hintText: "Email",
               obscureText: false,
               controller: _emailController,
+              focusNode: null,
             ),
 
             const SizedBox(height: 20),
@@ -97,6 +98,7 @@ class RegisterPage extends StatelessWidget {
               hintText: "Password",
               obscureText: true,
               controller: _passwordController,
+              focusNode: null,
             ),
             const SizedBox(height: 20),
             // password textfield
@@ -104,6 +106,7 @@ class RegisterPage extends StatelessWidget {
               hintText: "Confirm password",
               obscureText: true,
               controller: _confirmPasswordController,
+              focusNode: null,
             ),
             const SizedBox(height: 40),
             // login button
