@@ -40,13 +40,16 @@ class ChatPage extends StatelessWidget {
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            // display messages
-            Expanded(child: _buildMessages()),
-            //  user input
-            _buildMessageInput(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              // display messages
+              Expanded(child: _buildMessages()),
+              //  user input
+              _buildMessageInput(),
+            ],
+          ),
         ),
       ),
     );
@@ -95,17 +98,19 @@ class ChatPage extends StatelessWidget {
 
   Widget _buildMessageInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0),
+      padding: const EdgeInsets.only(bottom: 30.0),
       child: Row(
         children: [
           // textfield should take most of the space
           Expanded(
             child: MyTextField(
-              hintText: "type a message...",
+              horizontal: 0.0,
+              hintText: "Type a message...",
               obscureText: false,
               controller: _messageController,
             ),
           ),
+          const SizedBox(width: 10),
           // send button
           Container(
             decoration: BoxDecoration(
