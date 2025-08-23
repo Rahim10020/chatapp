@@ -1,3 +1,4 @@
+import 'package:chatapp/components/settings_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,123 +21,33 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           children: [
             // Section profil
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              margin: const EdgeInsets.only(bottom: 20),
-              child: ListTile(
-                leading: Icon(
-                  Icons.person,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                title: const Text("Profil"),
-                subtitle: const Text("Modifier vos informations"),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                onTap: () {
-                  Get.snackbar(
-                    "Information",
-                    "Page profil à implémenter",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-                },
-              ),
-            ),
-
-            // Section notifications
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              margin: const EdgeInsets.only(bottom: 20),
-              child: ListTile(
-                leading: Icon(
-                  Icons.notifications,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                title: const Text("Notifications"),
-                subtitle: const Text("Gérer les notifications"),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                onTap: () {
-                  Get.snackbar(
-                    "Information",
-                    "Page notifications à implémenter",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-                },
-              ),
+            SettingsTile(
+              bbottom: 20,
+              leadingIcon: Icons.person,
+              trailingIcon: Icons.arrow_forward_ios,
+              title: "Profil",
+              subtitle: "Modifier vos informations",
+              onTap: () => Get.toNamed('/profil'),
             ),
 
             // Section thème
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              margin: const EdgeInsets.only(bottom: 20),
-              child: ListTile(
-                leading: Icon(
-                  Icons.palette,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                title: const Text("Thème"),
-                subtitle: const Text("Mode clair/sombre"),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                onTap: () {
-                  Get.snackbar(
-                    "Information",
-                    "Changement de thème à implémenter",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-                },
-              ),
+            SettingsTile(
+              bbottom: 20,
+              leadingIcon: Icons.palette,
+              trailingIcon: Icons.arrow_forward_ios,
+              title: "Theme",
+              subtitle: "Mode clair/sombre",
+              onTap: () => Get.toNamed('/light-dark'),
             ),
 
             // Section à propos
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: ListTile(
-                leading: Icon(
-                  Icons.info,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                title: const Text("À propos"),
-                subtitle: const Text("Version et informations"),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                onTap: () {
-                  Get.dialog(
-                    AlertDialog(
-                      title: const Text("À propos"),
-                      content: const Text(
-                        "Chat App v1.0.0\n\nUne application de chat développée avec Flutter et Firebase.",
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Get.back(),
-                          child: const Text("OK"),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+            SettingsTile(
+              bbottom: 0,
+              leadingIcon: Icons.palette,
+              trailingIcon: Icons.arrow_forward_ios,
+              title: "A propos",
+              subtitle: "Version et informations",
+              onTap: () => Get.toNamed('/about'),
             ),
           ],
         ),

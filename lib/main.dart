@@ -1,3 +1,4 @@
+import 'package:chatapp/pages/light_dark_page.dart';
 import 'package:chatapp/services/auth/auth_gate.dart';
 import 'package:chatapp/firebase_options.dart';
 import 'package:chatapp/pages/home_page.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/settings', page: () => SettingsPage()),
         // GetPage(name: '/chat-page', page: () => ChatPage()),
+        GetPage(name: '/light-dark', page: () => LightDarkPage()),
       ],
       theme: lightMode,
     );
