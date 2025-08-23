@@ -16,7 +16,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Home"), centerTitle: true),
+        appBar: AppBar(
+          title: Text("Chats"),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+        ),
         drawer: MyDrawer(),
         body: _buildUserList(),
       ),

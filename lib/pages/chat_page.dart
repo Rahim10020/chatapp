@@ -33,14 +33,11 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          receiverEmail,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.inversePrimary,
-            fontSize: 18,
-          ),
-        ),
+        title: Text(receiverEmail),
         centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SafeArea(
         child: Column(
