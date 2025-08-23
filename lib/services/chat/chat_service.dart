@@ -1,11 +1,14 @@
 import 'package:chatapp/models/message.dart';
 import 'package:chatapp/services/auth/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
-class ChatService {
+class ChatService extends GetxController {
   // get instance of firestore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   final authService = AuthService();
+
   // get user stream
   Stream<List<Map<String, dynamic>>> getUserStream() {
     return _firestore.collection("Users").snapshots().map((snapshot) {
@@ -63,4 +66,46 @@ class ChatService {
         .orderBy("timestamp", descending: false)
         .snapshots();
   }
+
+  // report user
+  Future<void> reportUser(String messageId, String userId) async {
+    final currentUser = authService.getCurrentUser();
+    final report = {
+      'reportedBy': currentUser!.uid,
+      'messageId': messageId,
+      'messageOwnerId': userId,
+      'timestamp': FieldValue.serverTimestamp(),
+    };
+
+    await _firestore.collection('Reports').add(report);
+  }
+
+  // block user
+  Future<void> blockUser(String userId) async {
+    final currentUser = authService.getCurrentUser();
+    await _firestore
+        .collection('Users')
+        .doc(currentUser!.uid)
+        .collection('BlockedUsers')
+        .doc(userId)
+        .set({});
+
+    update();
+  }
+
+  // unblock user
+  Future<void> unblockUser(String blockedUserId) async {
+    final currentUser = authService.getCurrentUser();
+    await _firestore
+        .collection('Users')
+        .doc(currentUser!.uid)
+        .collection('BlockedUsers')
+        .doc(blockedUserId)
+        .delete();
+  }
+
+  // get blocked users stream
+  // Stream<List<Map<String, dynamic>>> getBlockedUsersStream(String userId) async {
+  //   return _firestore.collection('Users').doc(userId).collection('BlockedUsers').snapshots().asyncMap((snapshot) async {final blockedUsersIds = snapshot.docs.map((doc) => doc.id).toList();} );
+  // }
 }
