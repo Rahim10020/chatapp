@@ -105,7 +105,25 @@ class ChatService extends GetxController {
   }
 
   // get blocked users stream
-  // Stream<List<Map<String, dynamic>>> getBlockedUsersStream(String userId) async {
-  //   return _firestore.collection('Users').doc(userId).collection('BlockedUsers').snapshots().asyncMap((snapshot) async {final blockedUsersIds = snapshot.docs.map((doc) => doc.id).toList();} );
-  // }
+  Stream<List<Map<String, dynamic>>> getBlockedUsers(String userId) {
+    return _firestore
+        .collection('Users')
+        .doc(userId)
+        .collection('BlockedUsers')
+        .snapshots()
+        .asyncMap((snapshot) async {
+          // get a list blocked users ids
+          final blockedUsersIds = snapshot.docs.map((doc) => doc.id).toList();
+
+          final userDocs = await Future.wait(
+            blockedUsersIds.map(
+              (id) => _firestore.collection('Users').doc(id).get(),
+            ),
+          );
+
+          return userDocs
+              .map((doc) => doc.data() as Map<String, dynamic>)
+              .toList();
+        });
+  }
 }
