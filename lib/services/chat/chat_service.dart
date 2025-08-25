@@ -20,6 +20,33 @@ class ChatService extends GetxController {
     });
   }
 
+  // get all users stream except blocked users
+  Stream<List<Map<String, dynamic>>> getAllUsersStreamExcludingBlocked() {
+    final currentUser = authService.getCurrentUser();
+    return _firestore
+        .collection('Users')
+        .doc(currentUser!.uid)
+        .collection('BlockedUsers')
+        .snapshots()
+        .asyncMap((snapshot) async {
+          // get blocked user ids
+          final blockedUserIds = snapshot.docs.map((doc) => doc.id).toList();
+
+          // get all users
+          final usersSnapshot = await _firestore.collection('Users').get();
+
+          // return as a stream list
+          return usersSnapshot.docs
+              .where(
+                (doc) =>
+                    doc.data()['email'] != currentUser.email &&
+                    !blockedUserIds.contains(doc.id),
+              )
+              .map((doc) => doc.data())
+              .toList();
+        });
+  }
+
   // send message
   Future<void> sendMessage(String receiverId, String message) async {
     // first we need to get the current user infos
