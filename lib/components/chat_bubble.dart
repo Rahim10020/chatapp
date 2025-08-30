@@ -20,7 +20,7 @@ class ChatBubble extends StatelessWidget {
   // show options
   void _showOptions(BuildContext context, String messageId, String userId) {
     showModalBottomSheet(
-      context: Get.context!,
+      context: context,
       builder: (context) {
         return SafeArea(
           child: Wrap(
@@ -38,13 +38,16 @@ class ChatBubble extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.block),
                 title: const Text("Block"),
-                onTap: () {},
+                onTap: () {
+                  Get.back();
+                  _blockUser(context, userId);
+                },
               ),
               // cancel button
               ListTile(
                 leading: Icon(Icons.cancel),
                 title: const Text("Cancel"),
-                onTap: () {},
+                onTap: () => Get.back(),
               ),
             ],
           ),
@@ -79,7 +82,33 @@ class ChatBubble extends StatelessWidget {
       ),
     );
   }
+
   // block user
+  void _blockUser(BuildContext context, String userId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Block user"),
+        content: const Text("Are you sure you want to block this user ?"),
+        actions: [
+          // cancel textButton
+          TextButton(onPressed: () => Get.back(), child: const Text("Cancel")),
+
+          // block textButton
+          TextButton(
+            onPressed: () {
+              ChatService().blockUser(userId);
+              Get.back();
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text("User blocked")));
+            },
+            child: const Text("Block"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
