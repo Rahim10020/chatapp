@@ -1,4 +1,5 @@
 import 'package:chatapp/controllers/theme_controller.dart';
+import 'package:chatapp/services/chat/chat_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,10 @@ class ChatBubble extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.flag),
                 title: const Text("Report"),
-                onTap: () {},
+                onTap: () {
+                  Get.back();
+                  _reportMessage(context, messageId, userId);
+                },
               ),
               // block button
               ListTile(
@@ -48,7 +52,33 @@ class ChatBubble extends StatelessWidget {
       },
     );
   }
+
   // report message
+  void _reportMessage(BuildContext context, String messageId, String userId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Report message"),
+        content: const Text("Are you sure you want to report this message ?"),
+        actions: [
+          // cancel textButton
+          TextButton(onPressed: () => Get.back(), child: const Text("Cancel")),
+
+          // report textButton
+          TextButton(
+            onPressed: () {
+              ChatService().reportUser(messageId, userId);
+              Get.back();
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text("Message reported")));
+            },
+            child: const Text("Report"),
+          ),
+        ],
+      ),
+    );
+  }
   // block user
 
   @override
