@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   // get access to chat and auth services
-  final chatService = ChatService();
-  final authService = AuthService();
+  final _chatService = ChatService();
+  final _authService = AuthService();
   HomePage({super.key});
 
   @override
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
   // build a list of users except of the current logged in user
   Widget _buildUserList() {
     return StreamBuilder(
-      stream: chatService.getUserStream(),
+      stream: _chatService.getAllUsersStreamExcludingBlocked(),
       builder: (context, snapshot) {
         // error
         if (snapshot.hasError) {
@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildUserListItem(Map<String, dynamic> userData) {
-    if (userData['email'] != authService.getCurrentUser()!.email) {
+    if (userData['email'] != _authService.getCurrentUser()!.email) {
       return UserTile(
         text: userData['email'],
         onTap: () {
