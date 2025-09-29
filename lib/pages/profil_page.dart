@@ -37,7 +37,10 @@ class ProfilPage extends StatelessWidget {
                   // button to go to blocked users page
                   IconButton(
                     onPressed: () => Get.toNamed('/blocked-users'),
-                    icon: Icon(Icons.arrow_forward_ios),
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ],
               ),
