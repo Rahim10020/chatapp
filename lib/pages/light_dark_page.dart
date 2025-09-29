@@ -10,7 +10,7 @@ class LightDarkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Light/Dark"),
+        title: Text("Appearance"),
         backgroundColor: Theme.of(context).colorScheme.surface,
         centerTitle: true,
         elevation: 0,
@@ -36,16 +36,17 @@ class LightDarkPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Mode sombre",
+                            "Dark moode ",
                             style: TextStyle(
                               color: Theme.of(
                                 context,
                               ).colorScheme.inversePrimary,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(width: 5),
                           Text(
-                            themeController.isDarkMode ? "Active" : "Desactive",
+                            themeController.isDarkMode ? "on" : "off",
                             style: TextStyle(color: Colors.blueAccent),
                           ),
                         ],
