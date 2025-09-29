@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
             GetPage(name: '/register', page: () => RegisterPage()),
             GetPage(name: '/home', page: () => HomePage()),
             GetPage(name: '/settings', page: () => SettingsPage()),
-            // GetPage(name: '/chat-page', page: () => ChatPage()),
             GetPage(name: '/light-dark', page: () => LightDarkPage()),
             GetPage(name: '/profil', page: () => ProfilPage()),
             GetPage(name: '/blocked-users', page: () => BlockedUsersPage()),

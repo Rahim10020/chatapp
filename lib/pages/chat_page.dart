@@ -69,7 +69,7 @@ class _ChatPageState extends State<ChatPage> {
   void sendMessage() async {
     // check if there is a message in the controller
     if (_messageController.text.isNotEmpty) {
-      //send the message
+      // send the message
       await chatservice.sendMessage(widget.receiverId, _messageController.text);
       // clear the contoller
       _messageController.clear();

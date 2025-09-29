@@ -32,7 +32,7 @@ A modern real-time chat application built with Flutter and Firebase.
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Rahim10020/chatapp
 cd chatapp
 ```
 
