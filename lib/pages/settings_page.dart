@@ -26,7 +26,7 @@ class SettingsPage extends StatelessWidget {
               leadingIcon: Icons.person,
               trailingIcon: Icons.arrow_forward_ios,
               title: "Profil",
-              subtitle: "Modifier vos informations",
+              subtitle: "Show your informations",
               onTap: () => Get.toNamed('/profil'),
             ),
 

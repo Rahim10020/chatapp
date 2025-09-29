@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
@@ -27,11 +28,16 @@ class ProfilPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Show blocked users",
+                    "Blocked users",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
                       fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  // button to go to blocked users page
+                  IconButton(
+                    onPressed: () => Get.toNamed('/blocked-users'),
+                    icon: Icon(Icons.arrow_forward_ios),
                   ),
                 ],
               ),

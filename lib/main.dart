@@ -1,4 +1,6 @@
+import 'package:chatapp/pages/blocked_users_page.dart';
 import 'package:chatapp/pages/light_dark_page.dart';
+import 'package:chatapp/pages/profil_page.dart';
 import 'package:chatapp/services/auth/auth_gate.dart';
 import 'package:chatapp/firebase_options.dart';
 import 'package:chatapp/pages/home_page.dart';
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
             GetPage(name: '/settings', page: () => SettingsPage()),
             // GetPage(name: '/chat-page', page: () => ChatPage()),
             GetPage(name: '/light-dark', page: () => LightDarkPage()),
-            // GetPage(name: '/profil', page: () => ProfilPage()),
+            GetPage(name: '/profil', page: () => ProfilPage()),
+            GetPage(name: '/blocked-users', page: () => BlockedUsersPage()),
             // GetPage(name: '/about', page: () => AboutPage()),
           ],
           theme: themeController.currentTheme,
